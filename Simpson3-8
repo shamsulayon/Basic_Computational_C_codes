@@ -1,0 +1,38 @@
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+#include<stdio.h>
+#include<cmath>
+#include<fstream>
+#include<complex>
+
+using namespace std;
+
+double f(double x)
+{
+    return x*x*x+pow(tan(x/10.0),3)+x*x+4;
+}
+
+int main()
+{
+    double h=0.01,I,s1,s2,s3;
+    s1=0;
+    for(int i=1;i<=498;i+=3)
+    {
+        s1=s1+f(0+i*h);
+    }
+    s2=0;
+    for(int k=2;k<=499;k+=3)
+    {
+        s2=s2+f(0+k*h);
+    }
+    s3=0;
+    for(int l=3;l<=497;l+=3)
+    {
+        s3=s3+f(0+l*h);
+    }
+
+    I=((3.0*h)/8.0)*(f(0)+f(5)+3*(s1+s2)+2*s3);
+    cout<<"Definite integral is : "<<I<<endl;
+    return 0;
+}
