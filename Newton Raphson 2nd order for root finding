@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+double f(double x)
+{
+    return x*x*x*x-5*x*x*x+2*x*x-10*x+3;
+}
+int main()
+{
+    double x,fx1,h=0.1;
+    cout<<"type x: \n";
+    cin>>x;
+    for(int i=1;i<51;i++)
+    {
+        fx1=(f(x)-4*f(x-h)+f(x-2*h))/(2*h);
+        x=x-(f(x)/fx1);
+        if (fabs((x))<0.0000001)
+            break;
+        
+    }
+    cout<<"the root is= "<<x<<endl;
+    return 0;
+}
