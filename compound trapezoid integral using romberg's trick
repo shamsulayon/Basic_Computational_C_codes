@@ -1,0 +1,58 @@
+#include<iostream>
+#include<cstdlib>
+#include<ctime>
+#include<stdio.h>
+#include<cmath>
+#include<fstream>
+#include<complex>
+
+using namespace std;
+//PROBLEM:integrate the following function from x=0 to 5
+double f(double x)
+{
+    return x*x*x+pow(tan(x/10.0),3)+x*x+4;
+}
+double compound_trapezoid(double h,double a,double b)
+{
+   double sum=0.0;
+    for(int i=1;i<(b-a)/((double)h);i++)
+    {
+        sum=sum+f(0+i*h);
+    }
+
+
+
+
+    return (h/2.0)*(f(0)+f(5)+2*sum);
+
+}
+double rt(int m,double h,double a,double b)
+{   if(m==0)
+    {
+        return compound_trapezoid(h,a,b);
+    }
+    else
+    return (1.0/(pow(2,2*m+2)-1))*(pow(2,2*m+2)*rt(m-1,h/2.0,a,b)-rt(m-1,h,a,b));
+}
+
+int main()
+{
+    double h,a,b;
+    int m;
+    cout<<"Enter lower limit of integration : "<<endl;
+    cin>>a;
+
+    cout<<"Enter upper limit of integration : "<<endl;
+    cin>>b;
+
+    cout<<"Enter value of h : \n";
+    cin>>h;
+
+    cout<<"Enter order,m : "<<endl;
+    cin>>m;
+    cout<<"compound trapezoid integral using romberg's trick for order "<<m<<" is : "<<rt(m,h,a,b)<<endl;
+
+
+    return 0;
+
+}
