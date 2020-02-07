@@ -1,0 +1,6 @@
+  # build an executable named myprog from myprog.c
+all: bessel.c 
+	gcc -g -Wall -o bessel bessel.c -lm
+ 
+clean: 
+	$(RM) bessel
